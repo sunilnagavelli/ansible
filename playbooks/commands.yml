@@ -1,0 +1,9 @@
+---
+
+- name: Check Commands
+  hosts: all
+  tasks: 
+    - name: date checker
+      command: date
+    - name: uname checker
+      command: uname -a

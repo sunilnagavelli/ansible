@@ -1,0 +1,12 @@
+---
+
+- name: Init Host
+  hosts: all
+  tasks:
+    - name: Update apt
+      command: apt-get update -y
+
+- hosts: all
+  tasks:
+    - name: Install Python
+      apt: pkg=python state=present update_cache=true

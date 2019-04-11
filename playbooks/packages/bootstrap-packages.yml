@@ -1,0 +1,17 @@
+- 
+  name: Install list of inital packages
+  hosts: all
+  vars:
+    packages:
+      - python
+      - python3
+      - openjdk-8-jdk
+  tasks:
+    - raw: apt-get install python -y
+    - apt: update_cache=yes
+    - apt_repository: repo='ppa:openjdk-r/ppa' state=present
+    - apt: name='{{ packages }}' state=present
+    - command: 'update-alternatives --config java'
+    - shell: 'echo java -version'
+      register: output
+    - debug: var=output.stdout_lines                                
